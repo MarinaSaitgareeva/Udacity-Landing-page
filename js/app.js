@@ -47,7 +47,7 @@ const section = document.querySelectorAll('section');
 for (let i = 0; i <= section.length; i++) {
     const navBarItem = document.createElement('li');   
     navBarItem.innerHTML = '<a href="#' + section[i].getAttribute('id') + '" class="menu__link">' + section[i].getAttribute('data-nav') + '</a>';
-    navBarList.appendChild(navBarItem);
+    navBarList.append(navBarItem);
 }
 
 
