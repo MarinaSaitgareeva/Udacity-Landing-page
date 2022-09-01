@@ -42,11 +42,11 @@
 const navBarList = document.getElementById('navbar__list');
 
 // Add Lists and Links in NavBar
-const section = document.querySelectorAll('section');
+const sections = document.querySelectorAll('section');
 
-for (let i = 0; i <= section.length; i++) {
+for (let i = 0; i <= sections.length; i++) {
     const navBarItem = document.createElement('li');   
-    navBarItem.innerHTML = '<a href="#' + section[i].getAttribute('id') + '" class="menu__link">' + section[i].getAttribute('data-nav') + '</a>';
+    navBarItem.innerHTML = '<a href="#' + sections[i].getAttribute('id') + '" class="menu__link">' + sections[i].getAttribute('data-nav') + '</a>';
     navBarList.append(navBarItem);
 }
 
