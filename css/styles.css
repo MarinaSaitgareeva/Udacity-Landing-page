@@ -232,8 +232,9 @@ a.active {
 #btn-to-top {
     border-radius: 50%;
     background-color: rgba(238, 238, 238, 0.419);
-    width: 2rem;
+    width: 2.5rem;
     height: auto;
+    opacity: 0.5;
     position: fixed;
     bottom: 1.5rem;
     right: 1.5rem;

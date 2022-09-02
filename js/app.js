@@ -34,19 +34,24 @@ const sections = document.querySelectorAll('section');
  * 
 */
 
-//function - determines whether section is in the viewport and should be highlighted or not, including highlighted nav bar menu links
+//Function determines whether section is in the viewport and should be highlighted or not, including highlighted nav bar menu links
 function isSectionActive() {
   for (const section of sections) {
     const sectionPosition = section.getBoundingClientRect();
 
     if (sectionPosition.top <= 300 && sectionPosition.bottom >= 300) {
       const sectionId = section.id;
+
+      // Select active link and set class: active
       document.querySelector(`.${sectionId}`).classList.add('active');
+      // Select active section and set class: your-active-class
       section.classList.add('your-active-class');
     } 
       else {
         const sectionId = section.id;
+        // Remove class: active from other links (not active)
         document.querySelector(`.${sectionId}`).classList.remove('active');
+        // Remove class: active from other sections (not active)
         section.classList.remove('your-active-class');
       }
   }
@@ -60,18 +65,18 @@ function isSectionActive() {
 */
 
 // build the nav
-// function - This will dynamically create a navigation menu based on the sections of the page.
+// Function dynamically creates a navigation menu based on the sections of the page
 function buildNavBar () {
   for (let i = 0; i < sections.length; i++) {
-    //create HTML elements <li> and <a>
+    // Create HTML elements <li> and <a>
     const navBarItem = document.createElement('li');
     const navBarLink = document.createElement('a');
       
-    // get Section Name and Section Id for href and text in HTML element <a>
+    // Get Section Name and Section Id for href and text in HTML element <a>
     const sectionName = sections[i].dataset.nav;
     const sectionId = sections[i].id;
       
-    //set attributes (href and classes) and text to HTML element <a>
+    // Set attributes (href and classes) and text to HTML element <a>
     // navBarLink.href = `#${sectionId}`;
     navBarLink.classList.add('menu__link', sectionId);
     navBarLink.innerText = sectionName;
@@ -86,14 +91,13 @@ function buildNavBar () {
 }
 
 
-// Smoothly scroll to Sections using scrollTO event on navBarLinks
+// Function smoothly scrolls to Sections when click on corresponding link (using scrollTO event on navBarLinks)
 function scrollToAnchor () {
   for (let i = 0; i < sections.length; i++) {
     const sectionId = sections[i].id;
     const navBarLink = document.querySelector(`.${sectionId}`);
 
     // Add event listener to navBarLink for click
-    // navBarLink.addEventListener('click', (e) => { sections[i].scrollIntoView({behavior: 'smooth', block: 'start'}); }, false);
     const sectionPositionTop = sections[i].offsetTop;
     navBarLink.addEventListener('click', (e) => {
       scrollTo({
@@ -104,6 +108,8 @@ function scrollToAnchor () {
     }, false);
   }
 }
+    // Second option with scrollIntoView
+    // navBarLink.addEventListener('click', (e) => { sections[i].scrollIntoView({behavior: 'smooth', block: 'start'}); }, false);
 
 /**
  * End Main Functions
@@ -111,11 +117,10 @@ function scrollToAnchor () {
  * 
 */
 
-// When user scrolls this calls the isSectionActive function to determine which section is in viewport
+// When the user scrolls this calls the isSectionActive function to determine which section is in viewport
 document.addEventListener('scroll', function () {
   isSectionActive();
 });
-
 
 
 // Build menu
@@ -129,10 +134,10 @@ scrollToAnchor ();
 // Set sections as active
 
 
-// Add a scroll to top button on the page that’s only visible when the user scrolls below the fold of the page.
+// Add a scroll-to-top button on the page that only visible when the user scrolls below the fold of the page
 const btnToTop = document.querySelector('#btn-to-top');
 
-// Clicking on the icon the document will scroll to the top smoothly
+// When the user clicks on scroll-to-top button the page will scroll to the top smoothly
 btnToTop.addEventListener('click', (event) => {
   window.scrollTo({
     top: 0,
@@ -141,19 +146,23 @@ btnToTop.addEventListener('click', (event) => {
 });
 
 
-//Hide fixed navigation bar while not scrolling (it should still be present on page load). And appearing button to-top after Section2
+//Hide fixed navigation bar while not scrolling (it should still be present on page load). And appearing the scroll-to-top button after Section2
 document.onscroll = () => {
+  // Show fixed navigation bar while scrolling
   navBarMenu.style.display = 'block';
+
   let isScrolling;
   clearTimeout(isScrolling);
 
+  // Hide fixed navigation bar while not scrolling
   isScrolling = setTimeout(() => {
     navBarMenu.style.display = 'none';
-  }, 6000);
+  }, 8000);
 
+  // If the user scrolls down to Section 3, the scroll-to-top button appears
   if(window.scrollY >= sections[1].offsetTop - 50) {
-    btnToTop.style.display = "block";
+    btnToTop.style.display = 'block';
   } else {
-    btnToTop.style.display = "none";
+    btnToTop.style.display = 'none';
   }
 };
