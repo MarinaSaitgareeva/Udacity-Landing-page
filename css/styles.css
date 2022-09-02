@@ -208,6 +208,12 @@ section.your-active-class .landing__container::after {
     animation: rotate 5s linear 0s infinite forwards reverse;
 }
 
+a.active {
+    background: #333;
+    color: #fff !important;
+    transition: ease 0.3s all;
+}
+
 /* Section Active Styles Keyframe Animations */
 @keyframes rotate {
 	from {
@@ -221,3 +227,15 @@ section.your-active-class .landing__container::after {
 		           rotate(-360deg);
 	}
 }
+
+
+#btn-to-top {
+    border-radius: 50%;
+    background-color: rgba(238, 238, 238, 0.419);
+    width: 2rem;
+    height: auto;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    cursor: pointer;
+  }
